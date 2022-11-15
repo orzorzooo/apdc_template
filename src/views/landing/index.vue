@@ -1,37 +1,18 @@
 <template>
   <div>
-    <v-sheet>
-      <div class="h-92vh bg-orange-400">
-        <div class="">
-          <v-img :src="bg" height="92vh">
-            <v-container class="h-full text-white">
-              <v-row class="h-full" align="center">
-                <v-col sm="12" md="6">
-                  <div class="text-6xl font-bold text-left">APDC</div>
-                  <div>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Eum, nesciunt? Id quibusdam provident consequatur dolore
-                    ipsa harum praesentium sequi odio eaque doloremque repellat,
-                    porro at ad veniam corporis. Fugiat, dolore?
-                  </div>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-img>
-        </div>
-      </div>
-    </v-sheet>
+    <Hero></Hero>
+    <SkewedDivider></SkewedDivider>
+    <About></About>
+    <Feature></Feature>
   </div>
 </template>
 
 <script>
-import bg from "@/assets/images/landing-hero-bg.png";
+import Hero from "./components/hero.vue";
+import Feature from "./components/feature.vue";
+import About from "./components/about.vue";
+import SkewedDivider from "@/components/Dividers/skewed.vue";
 export default {
-  components: {},
-  data() {
-    return {
-      bg,
-    };
-  },
+  components: { Hero, Feature, About, SkewedDivider },
 };
 </script>
