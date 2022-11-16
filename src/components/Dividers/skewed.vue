@@ -1,5 +1,5 @@
 <template>
-  <section class="relative h-60 test">
+  <section class="relative h-60 test -mt-30">
     <div class="skewed"></div>
   </section>
 </template>
