@@ -15,9 +15,12 @@
         <div class="md:text-4xl font-bold">{{ project.name }}</div>
       </div>
     </v-img>
-    <div>project {{ id }}</div>
-    <!-- {{ project.post }} -->
-    <VueMarkdown v-if="project">{{ project.post }}</VueMarkdown>
+    <v-container>
+      <VueMarkdown
+        v-if="project && project.post"
+        :source="project.post"
+      ></VueMarkdown>
+    </v-container>
   </div>
 </template>
 <script>

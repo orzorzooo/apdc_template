@@ -7,6 +7,7 @@
       <v-row>
         <v-col cols="6" md="4" v-for="(item, i) in projects" :key="i">
           <ProjectCard
+            class="cursor-pointer"
             :item="item"
             :delay="i * 200"
             @click.native="
