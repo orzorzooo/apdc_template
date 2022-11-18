@@ -19,6 +19,12 @@ const routes = [
     props: true,
   },
   {
+    path: "/panoProjects",
+    name: "panoProjects",
+    component: () => import("@/views/panoProjects/index.vue"),
+    props: true,
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
