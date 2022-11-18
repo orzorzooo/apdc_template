@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import landing from "@/views/landing/index.vue";
+import project from "@/views/project/index.vue";
 
 Vue.use(VueRouter);
 
@@ -10,6 +11,12 @@ const routes = [
     path: "/",
     name: "landing",
     component: landing,
+  },
+  {
+    path: "/projects/project/:id",
+    name: "project",
+    component: project,
+    props: true,
   },
   {
     path: "/about",

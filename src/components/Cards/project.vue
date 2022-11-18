@@ -1,7 +1,12 @@
 <template>
   <div data-aos="zoom-in" :data-aos-delay="delay ? delay : ''">
     <div>
-      <v-img :src="item.image ? item.image : ''" height="300px"> </v-img>
+      <v-img
+        v-if="item.files && item.files.length > 0"
+        :src="assetURL(item.files[0].directus_files_id)"
+        height="300px"
+      >
+      </v-img>
     </div>
     <div
       class="w-full bg-stone-600/70 p-5 text-white flex2 justify-between content-end"
@@ -21,7 +26,9 @@
   </div>
 </template>
 <script>
+import { assetURL } from "@/api/request";
 export default {
+  methods: { assetURL },
   props: ["item", "delay"],
 };
 </script>
