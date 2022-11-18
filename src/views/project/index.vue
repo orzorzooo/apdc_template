@@ -4,10 +4,11 @@
       v-if="this.project && this.project.files.length > 0"
       :lazy-src="
         assetURL(this.project.files[0].directus_files_id, {
-          params: { quality: 10 },
+          quality: 10,
+          width: 300,
         })
       "
-      :src="assetURL(this.project.files[0].directus_files_id)"
+      :src="assetURL(this.project.files[0].directus_files_id, { quality: 80 })"
       gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
       height="50vh"
     >

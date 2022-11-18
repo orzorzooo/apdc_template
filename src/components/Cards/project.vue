@@ -3,7 +3,9 @@
     <div>
       <v-img
         v-if="item.files && item.files.length > 0"
-        :src="assetURL(item.files[0].directus_files_id)"
+        :src="
+          assetURL(item.files[0].directus_files_id, { quality: 30, width: 500 })
+        "
         height="300px"
       >
       </v-img>
