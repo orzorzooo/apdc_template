@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "_id": "ad9e81fb-87df-4e04-9b1f-c2d216f85d85",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/items/pano_projects",
+    "url": "{{url}}/items/pano_projects",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-21T06:50:32.447Z",
+    "modified": "2022-11-21T06:50:32.447Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  }
+]

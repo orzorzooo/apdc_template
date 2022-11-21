@@ -8,7 +8,41 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-11-18T02:07:22.637Z",
-    "modified": "2022-11-18T02:07:42.739Z",
+    "modified": "2022-11-21T06:52:23.245Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "4db5872f-99d8-4ee6-a024-4483757c5a52",
+    "colId": "dd26242e-135a-4c27-8b47-d2dbfb49fcea",
+    "containerId": "",
+    "name": "get pano projects",
+    "url": "{{url}}/items/pano_projects?fields=*,scenes.*",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-11-21T06:51:23.056Z",
+    "modified": "2022-11-21T07:05:49.073Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "fields",
+        "value": "*,scenes.*",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "a2de6072-9eb8-4572-99ce-34f1b62b1174",
+    "colId": "dd26242e-135a-4c27-8b47-d2dbfb49fcea",
+    "containerId": "",
+    "name": "get pano project",
+    "url": "{{url}}/items/pano_projects/8b073cc8-6c43-4bb5-b2c8-eba6816dba38",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-11-21T07:21:10.214Z",
+    "modified": "2022-11-21T07:21:55.645Z",
     "headers": [],
     "params": [],
     "tests": []

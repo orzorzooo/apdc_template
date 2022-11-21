@@ -31,7 +31,6 @@ export default {
       setTimeout(function () {
         AOS.refresh({});
       }, 600);
-      console.log("fuck");
       this.loaded = true;
       done();
     },
