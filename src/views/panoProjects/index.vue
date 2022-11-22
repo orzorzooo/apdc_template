@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="bg h-100vh md:h-60vh">
-      <v-container class="h-60vh py-0">
+    <div class="bg h-100vh md:h-50vh">
+      <v-container class="h-full py-0">
         <v-row align="end" class="h-full">
           <v-col cols="6" md="6" align-self="center">
             <div class="font-bold text-3xl text-white">
@@ -15,6 +15,8 @@
         </v-row>
       </v-container>
     </div>
+
+    <About></About>
 
     <div>
       <v-container>
@@ -52,10 +54,11 @@
 </template>
 <script>
 import Pano from "./components/pano.vue";
+import About from "./components/about.vue";
 import PanoProjectCard from "@/components/Cards/panoProject.vue";
 import { get } from "@/api/request";
 export default {
-  components: { Pano, PanoProjectCard },
+  components: { Pano, PanoProjectCard, About },
   data() {
     return {
       dialog: false,
