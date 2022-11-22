@@ -9,9 +9,10 @@
         height="300px"
       >
       </v-img>
+      <ImgIcon v-else></ImgIcon>
     </div>
     <div
-      class="w-full bg-stone-600/70 p-5 text-white flex2 justify-between content-end"
+      class="w-full h-20 bg-stone-600/70 p-5 text-white flex justify-between content-end"
     >
       <div class="self-end">
         <h2 class="font-bold text-orange-300/90 w-full">
@@ -29,7 +30,9 @@
 </template>
 <script>
 import { assetURL } from "@/api/request";
+import ImgIcon from "@/components/imgIcon.vue";
 export default {
+  components: { ImgIcon },
   methods: { assetURL },
   props: ["item", "delay"],
 };

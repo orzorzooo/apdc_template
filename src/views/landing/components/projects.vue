@@ -6,24 +6,24 @@
       </div>
       <v-row>
         <v-col cols="6" md="4" v-for="(item, i) in projects" :key="i">
-          <ProjectCard
+          <CardProject
             class="cursor-pointer"
             :item="item"
             :delay="i * 200"
             @click.native="
               $router.push({ name: 'project', params: { id: item.id } })
             "
-          ></ProjectCard>
+          ></CardProject>
         </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
 <script>
-import ProjectCard from "@/components/Cards/project.vue";
+import CardProject from "@/components/Cards/project.vue";
 import { get } from "@/api/request";
 export default {
-  components: { ProjectCard },
+  components: { CardProject },
   methods: {
     alertMsg() {
       alert("click event is happen");
