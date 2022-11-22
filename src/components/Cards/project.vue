@@ -6,7 +6,7 @@
         :src="
           assetURL(item.files[0].directus_files_id, { quality: 30, width: 500 })
         "
-        height="300px"
+        class="h-50"
       >
       </v-img>
       <ImgIcon v-else></ImgIcon>

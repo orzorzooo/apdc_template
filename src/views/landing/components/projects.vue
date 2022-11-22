@@ -5,7 +5,7 @@
         Projects
       </div>
       <v-row>
-        <v-col cols="6" md="4" v-for="(item, i) in projects" :key="i">
+        <v-col cols="12" sm="6" md="4" v-for="(item, i) in projects" :key="i">
           <CardProject
             class="cursor-pointer"
             :item="item"

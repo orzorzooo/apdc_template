@@ -2,9 +2,10 @@
   <v-app>
     <Navbar></Navbar>
     <v-main>
-      <transition name="fade" @enter="enter">
-        <router-view />
-      </transition>
+      <router-view />
+      <!-- <transition name="fade" @enter="enter">
+      
+      </transition> -->
       <!-- <router-view v-slot="{ Component }">
         <transition name="fade">
           <component :is="Component"></component>
@@ -12,15 +13,17 @@
       </router-view> -->
       <!-- <router-view class="view" /> -->
     </v-main>
+    <Footer></Footer>
   </v-app>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/footer.vue";
 import AOS from "aos";
 export default {
   name: "App",
-  components: { Navbar },
+  components: { Navbar, Footer },
 
   data: () => ({
     loaded: true,
