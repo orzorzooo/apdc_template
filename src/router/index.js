@@ -25,6 +25,11 @@ const routes = [
     props: true,
   },
   {
+    path: "/autoPartVR",
+    name: "autoPartVR",
+    component: () => import("@/views/autoPartVR/index.vue"),
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
