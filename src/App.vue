@@ -13,7 +13,8 @@
       </router-view> -->
       <!-- <router-view class="view" /> -->
     </v-main>
-    <Footer></Footer>
+
+    <Footer v-if="!$route.meta.hideFooter"></Footer>
   </v-app>
 </template>
 
@@ -21,10 +22,13 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer.vue";
 import AOS from "aos";
+import { mapGetters } from "vuex";
 export default {
   name: "App",
   components: { Navbar, Footer },
-
+  computed: {
+    ...mapGetters("layout", ["layout"]),
+  },
   data: () => ({
     loaded: true,
     //

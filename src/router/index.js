@@ -28,6 +28,7 @@ const routes = [
     path: "/autoPartVR",
     name: "autoPartVR",
     component: () => import("@/views/autoPartVR/index.vue"),
+    meta: { hideFooter: true },
   },
   {
     path: "/about",
