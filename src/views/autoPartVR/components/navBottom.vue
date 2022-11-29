@@ -25,7 +25,7 @@
             <v-img
               height="100%"
               @click="onClick(i)"
-              :src="assetURL(slide.feature_image)"
+              :src="assetURL(slide.feature_image, { width: 300, quality: 80 })"
               class="rounded-sm border-white"
               :class="{ 'border-1': selected_index == i }"
             >

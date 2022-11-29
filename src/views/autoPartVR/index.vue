@@ -10,7 +10,10 @@
         "
         :src="
           scenes.length > 0
-            ? assetURL(scenes[selected_scenes_index].panorama)
+            ? assetURL(scenes[selected_scenes_index].panorama, {
+                quality: 80,
+                width: 2580,
+              })
             : ''
         "
         style="height: 100vh; position: fixed"
