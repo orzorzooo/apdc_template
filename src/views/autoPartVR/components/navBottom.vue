@@ -1,6 +1,7 @@
 <template>
   <div class="w-full px-1 h-full">
     <vueper-slides
+      v-if="!$vuetify.breakpoint.lg"
       :infinite="true"
       class="no-shadow h-full w-3/4 text-center text-white mx-auto"
       arrows-outside
@@ -34,6 +35,31 @@
         </template>
       </vueper-slide>
     </vueper-slides>
+
+    <div v-else class="w-full">
+      <v-list flat nav class="pt-20">
+        <div v-for="(slide, i) in slides" :key="i">
+          <v-list-item @click="onClick(i)" class="mb-5">
+            <div class="w-full text-center">
+              <v-img
+                width="100%"
+                height="150"
+                @click="onClick(i)"
+                :src="
+                  assetURL(slide.feature_image, { width: 300, quality: 80 })
+                "
+                class="rounded-sm border-white"
+                :class="{ 'border-1': selected_index == i }"
+              >
+              </v-img>
+              <div class="text-xl font-bold text-gray-200/50">
+                {{ slide.name }}
+              </div>
+            </div>
+          </v-list-item>
+        </div>
+      </v-list>
+    </div>
   </div>
 </template>
 <script>

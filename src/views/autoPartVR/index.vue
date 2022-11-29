@@ -11,8 +11,8 @@
         :src="
           scenes.length > 0
             ? assetURL(scenes[selected_scenes_index].panorama, {
-                quality: 80,
-                width: 2580,
+                quality: $vuetify.breakpoint.mdAndUp ? 80 : 70,
+                width: $vuetify.breakpoint.mdAndUp ? 5000 : 2500,
               })
             : ''
         "
@@ -27,13 +27,13 @@
 
     <!-- nav bottom -->
 
-    <div class="absolute bottom-0 p-5 z-5 text-center w-full" v-if="loaded">
+    <div class="absolute bottom-12 p-5 z-5 text-center w-full" v-if="loaded">
       <v-btn
         class=""
         outlined
         fab
         dark
-        @click="nav_bottom = true"
+        @click="nav_bottom = !nav_bottom"
         data-aos="fade"
         data-aos-delay="1000"
       >
@@ -42,11 +42,12 @@
     </div>
 
     <v-navigation-drawer
+      width="20%"
       v-model="nav_bottom"
+      temporary
       bottom
       fixed
       dark
-      height="250px"
       color="rgba(0,0,0,.8)"
     >
       <NavBottom
