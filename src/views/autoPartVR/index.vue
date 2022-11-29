@@ -2,6 +2,12 @@
   <div>
     <div>
       <VuePannellum
+        :preview="
+          assetURL('5e8dbf05-dcb6-482c-8668-9071d49555b9', {
+            quality: 30,
+            width: 1000,
+          })
+        "
         :src="
           scenes.length > 0
             ? assetURL(scenes[selected_scenes_index].panorama)
@@ -18,13 +24,16 @@
 
     <!-- nav bottom -->
 
-    <div
-      class="absolute bottom-0 p-5 z-5 text-center w-full"
-      v-if="loaded"
-      data-aos="fade-top"
-      data-aos-delay="500"
-    >
-      <v-btn class="" outlined fab dark @click="nav_bottom = true">
+    <div class="absolute bottom-0 p-5 z-5 text-center w-full" v-if="loaded">
+      <v-btn
+        class=""
+        outlined
+        fab
+        dark
+        @click="nav_bottom = true"
+        data-aos="fade"
+        data-aos-delay="1000"
+      >
         <v-icon>mdi-dots-horizontal</v-icon>
       </v-btn>
     </div>
@@ -71,7 +80,6 @@
       data-aos-delay="500"
     >
       <v-btn class="" outlined fab dark @click="dialog_description = true">
-        <!-- <v-icon>mdi-format-list-bulleted-square</v-icon> -->
         <v-icon>mdi-information-variant</v-icon>
       </v-btn>
     </div>
@@ -84,9 +92,10 @@
             "
           ></div>
         </v-card-text>
+        <v-divider class="w-3/4 mx-auto"></v-divider>
         <v-card-actions>
-          <v-btn outlined @click="dialog_description = false" class="w-full">
-            CLOSE
+          <v-btn @click="dialog_description = false" class="w-full" text>
+            <v-icon>mdi-window-close</v-icon>
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -104,22 +113,25 @@ export default {
   methods: {
     assetURL,
     onSceneSelect(index) {
-      if (this.selected_scenes_index == index) return;
-      this.loaded = false;
-      this.titleShow = false;
-      this.selected_scenes_index = index;
-      this.nav_bottom = false;
+      // if (this.selected_scenes_index == index) {
+      //   return;
+      // }
+      // this.loaded = false;
+      // this.titleShow = false;
+      // console.log(this.titleShow);
+      // this.nav_bottom = false;
+      // this.selected_scenes_index = index;
     },
     onLoaded() {
       this.loaded = true;
       this.titleShow = true;
+      console.log("loaded");
     },
-    fuck() {
-      console.log("fuck");
-    },
+
     onSlideClick(value) {
-      console.log("click", value);
       this.nav_bottom = false;
+      this.loaded = false;
+      this.titleShow = false;
       this.selected_scenes_index = value;
     },
   },
@@ -134,6 +146,7 @@ export default {
       titleShow: false,
       dialog_description: false,
       nav_bottom: false,
+      sensorSwitch: false,
     };
   },
   computed: {},

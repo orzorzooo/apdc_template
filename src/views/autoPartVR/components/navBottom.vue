@@ -46,7 +46,6 @@ export default {
   methods: {
     assetURL,
     onClick(index) {
-      console.log(index);
       if (this.selected_index == index) return;
       this.$emit("onSlideClick", index);
     },
