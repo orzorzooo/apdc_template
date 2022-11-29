@@ -2,10 +2,10 @@
   <div class="z-60">
     <v-container class="py-30">
       <v-row>
-        <v-col sm="12" md="6" data-aos="fade-right">
+        <v-col sm="12" md="6" data-aos="fade">
           <v-img :src="image"></v-img>
         </v-col>
-        <v-col sm="12" md="6" class="text-gray-500" data-aos="fade-left">
+        <v-col sm="12" md="6" class="text-gray-500" data-aos="fade">
           <div>about us</div>
           <div class="text-6xl font-thin my-5">Interactive Design</div>
           <div class="leading-loose">
