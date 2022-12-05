@@ -4,11 +4,11 @@
     "colId": "5e9fcc5f-38f2-4c90-86fc-7fcda49b5eab",
     "containerId": "",
     "name": "get",
-    "url": "{{url}}/items/projects/",
+    "url": "{{url}}/items/projects/40714c0e-f579-4cef-a324-7f3514237275",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-11-18T02:07:22.637Z",
-    "modified": "2022-11-21T06:52:23.245Z",
+    "modified": "2022-12-05T07:59:26.501Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -45,6 +45,31 @@
     "modified": "2022-11-21T07:21:55.645Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "84323701-605a-4897-8ce7-2bd94cec2a23",
+    "colId": "5e9fcc5f-38f2-4c90-86fc-7fcda49b5eab",
+    "containerId": "",
+    "name": "get project files by folder",
+    "url": "{{url}}/files?filter={\"folder\":{\"_eq\":\"6be513df-c2eb-45d7-811f-7787000bf04b\"}}",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-12-05T07:59:45.699Z",
+    "modified": "2022-12-05T08:05:09.204Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "filter",
+        "value": "{\"folder\":{\"_eq\":\"6be513df-c2eb-45d7-811f-7787000bf04b\"}}",
+        "isPath": false
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": \"40714c0e-f579-4cef-a324-7f3514237275\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]
