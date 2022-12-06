@@ -18,7 +18,9 @@
       height="50vh"
     >
       <div class="flex justify-center items-center text-white h-full">
-        <div class="text-2xl md:text-4xl font-bold">{{ project.name }}</div>
+        <div class="text-2xl md:text-4xl font-bold self-end">
+          {{ project.name }}
+        </div>
       </div>
     </v-img>
     <ImgIcon v-else class="h-50vh">

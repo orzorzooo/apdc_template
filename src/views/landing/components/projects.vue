@@ -1,8 +1,9 @@
 <template>
   <div class="bg-gray-100 py-30">
     <v-container>
+      <div class="text-center font-bold text-3xl text-orange-400">Projects</div>
       <div class="text-center mb-10 font-bold text-3xl text-orange-400">
-        Projects
+        最新專案
       </div>
       <v-row>
         <v-col cols="12" sm="6" md="4" v-for="(item, i) in projects" :key="i">
@@ -16,6 +17,17 @@
           ></CardProject>
         </v-col>
       </v-row>
+      <div class="w-full mx-auto text-center mt-10">
+        <v-btn
+          x-large
+          block
+          color="orange"
+          dark
+          outlined
+          @click="$router.push({ name: 'projects' })"
+          >所有專案</v-btn
+        >
+      </div>
     </v-container>
   </div>
 </template>
@@ -59,7 +71,7 @@ export default {
   async created() {
     this.projects = await get({
       url: "projects",
-      params: { fields: "*,files.*" },
+      params: { fields: "*,files.*", limit: 3 },
     });
   },
 };

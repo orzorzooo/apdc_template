@@ -1,39 +1,43 @@
 <template>
-  <div v-if="project">
-    <v-img
-      v-if="this.project && this.project.files.length > 0"
-      :lazy-src="
-        assetURL(this.project.files[0].directus_files_id, {
-          quality: 10,
-          width: 300,
-        })
-      "
-      :src="
-        assetURL(this.project.files[0].directus_files_id, {
-          quality: 80,
-          width: 1280,
-        })
-      "
-      gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
+  <div class="bg-gray-200">
+    <!-- <v-img
       height="50vh"
-    >
-      <div class="flex justify-center items-center text-white h-full">
-        <div class="text-2xl md:text-4xl font-bold">{{ project.name }}</div>
-      </div>
-    </v-img>
-    <ImgIcon v-else class="h-50vh">
-      <div class="flex justify-center items-center text-white h-full">
-        <div class="md:text-4xl font-bold">{{ project.name }}</div>
-      </div>
-    </ImgIcon>
-    <v-container>
-      <VueMarkdown
-        v-if="project && project.post"
-        :source="project.post"
-      ></VueMarkdown>
-    </v-container>
-    <v-container>
-      <Gallery :project="project"></Gallery>
+      :src="
+        assetURL('b37c2ed7-3f89-450c-9026-33a25fee5636.jpg', {
+          quality: 80,
+          width: 1920,
+        })
+      "
+    ></v-img> -->
+    <v-container class="py-30">
+      <v-row>
+        <v-col cols="12" md="4" v-for="(item, i) in projects" :key="i">
+          <v-card
+            height="250"
+            data-aos="fade"
+            :data-aos-delay="i * 100"
+            data-aos-offset="-300"
+            flat
+            color="rgba(0,0,0,0)"
+            @click="$router.push({ name: 'project', params: { id: item.id } })"
+          >
+            <v-img
+              v-if="item.files && item.files.length > 0"
+              :src="
+                assetURL(item.files[0].directus_files_id, {
+                  quality: 30,
+                  width: 500,
+                })
+              "
+              class="h-50"
+            >
+            </v-img>
+            <div class="text-md font-light leading-relaxed">
+              {{ item.name }}
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -42,17 +46,21 @@ import VueMarkdown from "vue-markdown";
 import ImgIcon from "@/components/imgIcon.vue";
 import Gallery from "./components/gallery.vue";
 import { get, assetURL } from "@/api/request";
+
 export default {
   props: ["id"],
   components: { VueMarkdown, ImgIcon, Gallery },
   data() {
     return {
-      project: null,
+      projects: null,
       assetURL,
     };
   },
   async created() {
-    this.project = await get({ url: `projects/${this.id}` });
+    this.projects = await get({
+      url: "projects",
+      params: { fields: "*,files.*" },
+    });
   },
 };
 </script>
