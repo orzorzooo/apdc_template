@@ -26,29 +26,12 @@
             :key="i"
             cols="12"
             md="4"
-            @click="
-              dialog = true;
-              selectedProject = item;
-            "
+            @click="$router.push({ name: 'pano', params: { id: item.id } })"
           >
             <PanoProjectCard :item="item"></PanoProjectCard>
           </v-col>
         </v-row>
       </v-container>
-    </div>
-
-    <div>
-      <v-dialog v-model="dialog" overlay-opacity="0.7">
-        <v-toolbar color="#9300ff" dark>
-          <v-btn icon @click="dialog = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-toolbar-title>
-            {{ selectedProject ? selectedProject.name : "" }}
-          </v-toolbar-title>
-        </v-toolbar>
-        <Pano v-if="dialog" :id="selectedProject.id"></Pano>
-      </v-dialog>
     </div>
   </div>
 </template>

@@ -69,7 +69,7 @@ export default {
       scroll: false,
       drawer: false,
       routes: [
-        { title: "車用類產線", routeName: "autoPartVR" },
+        { title: "環景導覽", routeName: "panoProjects" },
         // { title: "test01", routeName: "landing" },
       ],
     };
