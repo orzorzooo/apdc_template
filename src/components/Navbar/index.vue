@@ -23,7 +23,7 @@
           v-for="(item, i) in routes"
           :key="i"
           :routeName="item.routeName"
-          ><div class="text-xl font-bold">{{ item.title }}</div></NavItem
+          ><div class="text-md">{{ item.title }}</div></NavItem
         >
       </div>
 
