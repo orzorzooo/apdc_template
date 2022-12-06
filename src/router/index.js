@@ -2,7 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import landing from "@/views/landing/index.vue";
-import project from "@/views/projects/index.vue";
+import project from "@/views/projects/project.vue";
+import projects from "@/views/projects/index.vue";
 
 Vue.use(VueRouter);
 
@@ -18,6 +19,14 @@ const routes = [
     // component: () => import("@/views/projects/project.vue"),
     component: project,
     props: true,
+  },
+  {
+    path: "/projects",
+    name: "projects",
+    // component: () => import("@/views/projects/project.vue"),
+    component: projects,
+    props: true,
+    meta: { disableNavEffect: true },
   },
   {
     path: "/panoProjects",

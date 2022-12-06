@@ -1,7 +1,12 @@
 <template>
   <div
     ref="navbar"
-    class="transition fixed w-full z-60 bg-gray-100 bg-opacity-0 text-white"
+    class="transition fixed w-full z-60 bg-gray-100"
+    :class="{
+      'bg-opacity-0': $route.meta.disableNavEffect ? false : true,
+      'text-white': $route.meta.disableNavEffect ? false : true,
+      'text-gray-500': $route.meta.disableNavEffect,
+    }"
   >
     <!-- standard -->
     <div class="h-20">
@@ -69,6 +74,7 @@ export default {
       scroll: false,
       drawer: false,
       routes: [
+        { title: "專案works", routeName: "projects" },
         { title: "環景導覽", routeName: "panoProjects" },
         // { title: "test01", routeName: "landing" },
       ],
@@ -76,7 +82,7 @@ export default {
   },
   methods: {
     onScrollTrigger(navbar, value) {
-      if (window.pageYOffset > value) {
+      if (window.pageYOffset > value && !this.$route.meta.disableNavEffect) {
         navbar.classList.add("bg-opacity-100", "text-gray-500");
         this.scroll = true;
       } else {
