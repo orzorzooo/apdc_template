@@ -11,7 +11,6 @@
       ></v-img>
     </v-col>
     <vue-easy-lightbox
-      escDisabled
       moveDisabled
       :loop="true"
       :visible="visible"
