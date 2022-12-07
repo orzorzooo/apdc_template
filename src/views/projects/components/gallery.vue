@@ -4,6 +4,7 @@
       <v-img
         :src="item"
         width="100%"
+        height="200"
         @click="
           visible = true;
           index = i;

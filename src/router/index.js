@@ -26,7 +26,7 @@ const routes = [
     // component: () => import("@/views/projects/project.vue"),
     component: projects,
     props: true,
-    meta: { disableNavEffect: true },
+    // meta: { disableNavEffect: true },
   },
   {
     path: "/panoProjects",

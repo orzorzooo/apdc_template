@@ -12,19 +12,9 @@
       <ImgIcon v-else></ImgIcon>
     </div>
     <div
-      class="w-full h-20 bg-stone-600/70 p-5 text-white flex justify-between content-end"
+      class="text-sm font-bold border-l-3 border-orange-500 px-3 text-white mt-2"
     >
-      <div class="self-end">
-        <h2 class="font-bold text-orange-300/90 w-full">
-          {{ item.name ? item.name : "" }}
-        </h2>
-        <p class="text-white mb-0">
-          {{ item.description ? item.description : "" }}
-        </p>
-      </div>
-      <!-- <div class="self-end">
-        <h3 class="text-xl">$ {{ item.price ? item.price : "" }} / 月</h3>
-      </div> -->
+      {{ item.name }}
     </div>
   </div>
 </template>
