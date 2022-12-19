@@ -14,6 +14,7 @@
           class="flex justify-center items-center text-white h-full"
           data-aos="fade"
           data-aos-delay="300"
+          data-aos-anchor-placement="top-center"
         >
           <div class="w-2/3">
             <div class="text-sm mb-1 text-orange-500">OUR WORKS</div>
