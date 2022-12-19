@@ -35,7 +35,6 @@
           v-for="(item, i) in projects"
           :key="i"
           data-aos="fade"
-          :data-aos-delay="i * 100"
           data-aos-offset="-300"
           @click="$router.push({ name: 'project', params: { id: item.id } })"
           class="cursor-pointer"
