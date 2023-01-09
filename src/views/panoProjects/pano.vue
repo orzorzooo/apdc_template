@@ -20,8 +20,9 @@
         v-if="scenes"
         @load="onLoaded"
         :autoRotate="true"
+        :maxPitch="120"
+        :minPitch="-60"
       >
-        <div>bbbb</div>
       </VuePannellum>
     </div>
 
@@ -110,7 +111,8 @@
 <script>
 import { assetURL } from "@/api/request";
 import { get } from "@/api/request";
-import VuePannellum from "vue-pannellum";
+// import VuePannellum from "vue-pannellum";
+import VuePannellum from "@/components/vue-pannellum.vue";
 import NavBottom from "./components/navBottom.vue";
 export default {
   props: ["id"],
