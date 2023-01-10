@@ -1,47 +1,55 @@
 <template>
-  <div>
-    <div class="bg h-100vh md:h-50vh">
-      <v-container class="h-full py-0">
-        <v-row align="end" class="h-full">
-          <v-col cols="6" md="6" align-self="center">
-            <div class="font-bold text-3xl text-white">
-              <div>環景導覽</div>
-              <div>PANORAMA</div>
-            </div>
-          </v-col>
-          <v-col md="6" class="p-0">
-            <v-img :src="bg" width="100%"> </v-img>
-          </v-col>
-        </v-row>
-      </v-container>
+  <div class="bg-gray-800">
+    <div class="bg-gray-800">
+      <v-img :height="$vuetify.breakpoint.xsOnly ? '30vh' : '50vh'" :src="bg">
+        <div
+          class="flex justify-center items-center text-white h-full"
+          data-aos="fade"
+          data-aos-delay="300"
+          data-aos-anchor-placement="top-center"
+        >
+          <div class="w-2/3">
+            <Title :title="'720 panorama'" :text="'環景專案'"></Title>
+          </div>
+        </div>
+      </v-img>
     </div>
 
     <About></About>
+    <v-container>
+      <div class="py-30">
+        <Title :title="'projects'" :text="'最新專案'"></Title>
 
-    <div>
-      <v-container>
         <v-row>
           <v-col
+            cols="12"
+            sm="6"
+            md="4"
             v-for="(item, i) in panoProjects"
             :key="i"
-            cols="12"
-            md="4"
-            @click="$router.push({ name: 'pano', params: { id: item.id } })"
           >
-            <PanoProjectCard :item="item"></PanoProjectCard>
+            <CardProject
+              class="cursor-pointer"
+              :item="item"
+              :delay="i * 200"
+              @click.native="
+                $router.push({ name: 'pano', params: { id: item.id } })
+              "
+            ></CardProject>
           </v-col>
         </v-row>
-      </v-container>
-    </div>
+      </div>
+    </v-container>
   </div>
 </template>
 <script>
 import Pano from "./components/pano.vue";
 import About from "./components/about.vue";
-import PanoProjectCard from "@/components/Cards/panoProject.vue";
-import { get } from "@/api/request";
+import CardProject from "@/components/Cards/project.vue";
+import Title from "@/components/title.vue";
+import { get, assetURL } from "@/api/request";
 export default {
-  components: { Pano, PanoProjectCard, About },
+  components: { Pano, About, CardProject, Title },
   data() {
     return {
       dialog: false,
@@ -52,14 +60,14 @@ export default {
           featureImg: "4b7aede6-baa0-4f26-9889-382331b7b7b9",
         },
       ],
-
+      assetURL,
       bg: require("@/assets/images/panorama-bg-01.png"),
     };
   },
   async created() {
     this.panoProjects = await get({
       url: "pano_projects",
-      params: { fields: "id, name, description, image" },
+      params: { fields: "id, name, description, image, files.*" },
     });
   },
 };

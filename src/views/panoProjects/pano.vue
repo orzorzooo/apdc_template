@@ -19,9 +19,18 @@
         style="height: 100vh; position: fixed"
         v-if="scenes"
         @load="onLoaded"
-        :autoRotate="true"
+        :autoRotate="project.auto_rotate"
         :maxPitch="120"
         :minPitch="-60"
+        :yaw="scenes[selected_scenes_index].yaw"
+        :hfov="scenes[selected_scenes_index].hfov"
+        :pitch="scenes[selected_scenes_index].pitch"
+        :hotSpots="
+          scenes[selected_scenes_index].hotspots
+            ? scenes[selected_scenes_index].hotspots
+            : []
+        "
+        :hotSpotDebug="project.debug ? true : false"
       >
       </VuePannellum>
     </div>
@@ -115,20 +124,12 @@ import { get } from "@/api/request";
 import VuePannellum from "@/components/vue-pannellum.vue";
 import NavBottom from "./components/navBottom.vue";
 export default {
-  props: ["id"],
+  props: ["id", "index"],
+
   components: { VuePannellum, NavBottom },
   methods: {
     assetURL,
-    onSceneSelect(index) {
-      // if (this.selected_scenes_index == index) {
-      //   return;
-      // }
-      // this.loaded = false;
-      // this.titleShow = false;
-      // console.log(this.titleShow);
-      // this.nav_bottom = false;
-      // this.selected_scenes_index = index;
-    },
+    onSceneSelect(index) {},
     onLoaded() {
       this.loaded = true;
       this.titleShow = true;
@@ -136,17 +137,20 @@ export default {
     },
 
     onSlideClick(value) {
+      this.$router.push({
+        name: "pano",
+        params: { id: this.id, index: value },
+      });
       this.nav_bottom = false;
       this.loaded = false;
       this.titleShow = false;
       this.selected_scenes_index = value;
     },
   },
-  // props: ["id"],
   data() {
     return {
       quality: 80,
-      selected_scenes_index: 0,
+      selected_scenes_index: this.index ? this.index : 0,
       scenes: [],
       // id: "8b073cc8-6c43-4bb5-b2c8-eba6816dba38",
       loaded: false,
@@ -154,6 +158,7 @@ export default {
       dialog_description: false,
       nav_bottom: false,
       sensorSwitch: false,
+      project: null,
     };
   },
   computed: {},
@@ -162,7 +167,7 @@ export default {
       url: `pano_projects/${this.id}`,
       params: { fields: "*,scenes.*" },
     });
-
+    this.project = project;
     this.scenes = project.scenes;
     console.log(this.scenes);
   },

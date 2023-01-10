@@ -1,17 +1,8 @@
 <template>
   <div class="bg-gray-800 py-30">
     <v-container>
-      <div class="mb-10">
-        <div class="text-sm mb-1 text-orange-500">PROJECTS</div>
-        <div class="text-2xl md:text-3xl font-bold text-white">最新專案</div>
-      </div>
+      <Title :title="'projects'" :text="'最新專案'"></Title>
 
-      <!-- <div class="text-center font-bold text-3xl text-orange-400">
-        OUR WORKS
-      </div>
-      <div class="text-center mb-10 font-bold text-3xl text-orange-400">
-        最新專案
-      </div> -->
       <v-row>
         <v-col cols="12" sm="6" md="4" v-for="(item, i) in projects" :key="i">
           <CardProject
@@ -40,9 +31,10 @@
 </template>
 <script>
 import CardProject from "@/components/Cards/project.vue";
+import Title from "@/components/title.vue";
 import { get } from "@/api/request";
 export default {
-  components: { CardProject },
+  components: { CardProject, Title },
   methods: {
     alertMsg() {
       alert("click event is happen");

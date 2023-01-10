@@ -1,5 +1,5 @@
 <template>
-  <div class="h-100vh bg-orange-400">
+  <div class="h-100vh bg-gray-800">
     <div class="">
       <vueper-slides
         fade
@@ -24,10 +24,33 @@
               <v-container class="h-full text-white">
                 <v-row class="h-full" align="center">
                   <v-col sm="12" md="6">
-                    <div class="text-6xl font-bold text-left">
-                      {{ slide.title }}
+                    <div
+                      class="text-8xl font-bold text-orange-500 text-left"
+                      data-aos="fade-right"
+                      data-aos-delay="100"
+                    >
+                      APDC
                     </div>
-                    <div>
+                    <div
+                      class="text-4xl font-bold text-left"
+                      data-aos="fade-right"
+                      data-aos-delay="200"
+                      data-aos-offset="-300"
+                    >
+                      數位製造實驗室
+                    </div>
+                    <div
+                      class="border-t-1 border-orange-500 my-5"
+                      data-aos="fade-right"
+                      data-aos-delay="300"
+                      data-aos-offset="-300"
+                    ></div>
+                    <div
+                      class="text-xl font-bold"
+                      data-aos="fade-right"
+                      data-aos-delay="400"
+                      data-aos-offset="-300"
+                    >
                       {{ slide.content }}
                     </div>
                   </v-col>
@@ -70,15 +93,15 @@ export default {
     return {
       slides: [
         {
-          title: "APDC",
-          content: "lorem",
+          title: "APDC數位製造實驗室",
+          content: "創新產品開發、創意產業規劃及整合行銷決策商業模式導入",
           image: require("@/assets/images/landing-hero-bg.png"),
         },
-        {
-          title: "Interactive",
-          content: "lorem",
-          image: require("@/assets/images/feature-img-01.png"),
-        },
+        // {
+        //   title: "APDC數位製造實驗室",
+        //   content: "lorem",
+        //   image: require("@/assets/images/feature-img-01.png"),
+        // },
       ],
     };
   },

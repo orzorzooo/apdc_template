@@ -17,12 +17,7 @@
           data-aos-anchor-placement="top-center"
         >
           <div class="w-2/3">
-            <div class="text-sm mb-1 text-orange-500">OUR WORKS</div>
-            <div
-              class="text-3xl md:text-3xl font-bold border-l-3 border-orange-500 px-3"
-            >
-              所有專案
-            </div>
+            <Title :title="'our works'" :text="'所有專案'"></Title>
           </div>
         </div>
       </v-img>
@@ -65,13 +60,14 @@
 import VueMarkdown from "vue-markdown";
 import ImgIcon from "@/components/imgIcon.vue";
 import Gallery from "./components/gallery.vue";
+import Title from "@/components/title.vue";
 import { get, assetURL } from "@/api/request";
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 export default {
   props: ["id"],
-  components: { VueMarkdown, ImgIcon, Gallery },
+  components: { VueMarkdown, ImgIcon, Gallery, Title },
   data() {
     return {
       projects: null,

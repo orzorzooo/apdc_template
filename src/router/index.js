@@ -35,7 +35,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/panoProjects/pano/:id",
+    path: "/panoProjects/pano/:id/:index?",
     name: "pano",
     component: () => import("@/views/panoProjects/pano.vue"),
     props: true,

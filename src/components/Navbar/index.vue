@@ -1,7 +1,7 @@
 <template>
   <div
     ref="navbar"
-    class="transition fixed w-full z-60 bg-gray-100"
+    class="transition fixed w-full z-60 bg-gray-200"
     :class="{
       'bg-opacity-0': $route.meta.disableNavEffect ? false : true,
       'text-white': $route.meta.disableNavEffect ? false : true,
