@@ -28,6 +28,7 @@
                       class="text-8xl font-bold text-orange-500 text-left"
                       data-aos="fade-right"
                       data-aos-delay="100"
+                      data-aos-offset="-300"
                     >
                       APDC
                     </div>
