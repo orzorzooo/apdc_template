@@ -24,28 +24,23 @@
             md="3"
           >
             <div class="absolute p-10 pt-3 t-0 text-white" v-if="hover != i">
-              <div class="text-sm mb-3">service</div>
+              <div class="text-sm mb-1">service</div>
               <div class="">{{ item.title }}</div>
             </div>
-            <v-fade-transition
-              v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly"
-            >
-              <div
-                v-if="hover == i"
-                class="bg-white <md:h-full md:h-30 text-black"
-              >
+            <v-fade-transition v-if="$vuetify.breakpoint.xsOnly || $vuetify.breakpoint.smOnly">
+              <div v-if="hover == i" class="bg-gray-800 <md:h-full md:h-30 text-orange-500">
                 <div class="absolute p-10 pt-3 t-0">
-                  <div class="text-sm mb-3">service</div>
+                  <div class="text-sm mb-1">service</div>
                   <div class="">{{ item.title }}</div>
                 </div>
               </div>
             </v-fade-transition>
 
             <v-expand-transition v-else>
-              <div v-if="hover == i" class="bg-white <md:h-full md:h-30">
+              <div v-if="hover == i" class="bg-gray-800 <md:h-full md:h-30">
                 <div class="p-10 pt-3">
-                  <div class="text-sm mb-3">service</div>
-                  <div class="">{{ item.title }}</div>
+                  <div class="text-sm mb-1 text-orange-500">service</div>
+                  <div class="text-white">{{ item.title }}</div>
                 </div>
               </div>
             </v-expand-transition>
