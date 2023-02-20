@@ -76,6 +76,7 @@ export default {
       routes: [
         { title: "專案works", routeName: "projects" },
         { title: "環景導覽", routeName: "panoProjects" },
+        { title: "車用類產線AR", routeName: "autoPartAR" },
         // { title: "test01", routeName: "landing" },
       ],
     };

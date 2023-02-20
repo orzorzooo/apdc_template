@@ -47,6 +47,12 @@ const routes = [
     meta: { hideFooter: true },
   },
   {
+    path: "/autoPartAR",
+    name: "autoPartAR",
+    component: () => import("@/views/autoPartAR/index.vue"),
+    meta: { hideFooter: true },
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
