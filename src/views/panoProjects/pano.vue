@@ -25,11 +25,7 @@
         :yaw="scenes[selected_scenes_index].yaw"
         :hfov="scenes[selected_scenes_index].hfov"
         :pitch="scenes[selected_scenes_index].pitch"
-        :hotSpots="
-          scenes[selected_scenes_index].hotspots
-            ? scenes[selected_scenes_index].hotspots
-            : []
-        "
+        :hotSpots="scenes[selected_scenes_index].hotspots ? scenes[selected_scenes_index].hotspots : []"
         :hotSpotDebug="project.debug ? true : false"
       >
       </VuePannellum>
@@ -38,48 +34,24 @@
     <!-- nav bottom -->
 
     <div class="absolute bottom-12 p-5 z-5 text-center w-full" v-if="loaded">
-      <v-btn
-        class=""
-        outlined
-        fab
-        dark
-        @click="nav_bottom = !nav_bottom"
-        data-aos="fade"
-        data-aos-delay="1000"
-      >
+      <v-btn class="" outlined fab dark @click="nav_bottom = !nav_bottom" data-aos="fade" data-aos-delay="1000">
         <v-icon>mdi-dots-horizontal</v-icon>
       </v-btn>
     </div>
 
-    <v-navigation-drawer
-      width="20%"
-      v-model="nav_bottom"
-      temporary
-      bottom
-      fixed
-      dark
-      color="rgba(0,0,0,.8)"
-    >
-      <NavBottom
-        :slides="scenes"
-        @onSlideClick="onSlideClick"
-        :selected_index="selected_scenes_index"
-      ></NavBottom>
+    <v-navigation-drawer width="20%" v-model="nav_bottom" temporary bottom fixed dark color="rgba(0,0,0,.8)">
+      <NavBottom :slides="scenes" @onSlideClick="onSlideClick" :selected_index="selected_scenes_index"></NavBottom>
     </v-navigation-drawer>
 
     <div
       v-if="titleShow"
       class="absolute h-30 top-30 bg-none z-0 text-gray-100 font-bold rounded-r-xl p-5 pointer-events-none touch-none"
     >
-      <div
-        class="text-orange-300 text-sm font-bold"
-        data-aos="fade-right"
-        data-aos-delay="500"
-      >
+      <div class="text-orange-300 text-sm font-bold" data-aos="fade-right" data-aos-delay="500">
         環景導覽 View 720 Tour
       </div>
       <div class="text-2xl" data-aos="fade-right " data-aos-delay="700">
-        崑山科大車用類產線
+        {{ project.name }}
       </div>
       <div class="text-2xl" data-aos="fade-right" data-aos-delay="900">
         {{ scenes[selected_scenes_index].name }}
@@ -87,12 +59,7 @@
     </div>
 
     <!-- description btn -->
-    <div
-      class="absolute top-30 right-0 p-5 z-5"
-      v-if="loaded"
-      data-aos="fade-left"
-      data-aos-delay="500"
-    >
+    <div class="absolute top-30 right-0 p-5 z-5" v-if="loaded" data-aos="fade-left" data-aos-delay="500">
       <v-btn class="" outlined fab dark @click="dialog_description = true">
         <v-icon>mdi-information-variant</v-icon>
       </v-btn>
@@ -100,11 +67,7 @@
     <v-dialog v-model="dialog_description" scrollable>
       <v-card class="">
         <v-card-text class="pt-5 h-80vh">
-          <div
-            v-html="
-              scenes.length > 0 ? scenes[selected_scenes_index].description : ''
-            "
-          ></div>
+          <div v-html="scenes.length > 0 ? scenes[selected_scenes_index].description : ''"></div>
         </v-card-text>
         <v-divider class="w-3/4 mx-auto"></v-divider>
         <v-card-actions>
