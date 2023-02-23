@@ -4,11 +4,31 @@
     "colId": "history",
     "containerId": "",
     "name": "{{url}}/items/pano_projects",
-    "url": "{{url}}/items/mindar_projects",
+    "url": "{{url}}/items/mindar_projects/c1a6dc87-780c-4fe4-aea1-8334058bf0ee?fields=*,files.*,mindar_targets.*",
     "method": "GET",
     "sortNum": 0,
     "created": "2022-11-21T06:50:32.447Z",
-    "modified": "2023-02-23T06:06:22.570Z",
+    "modified": "2023-02-23T06:37:35.885Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "fields",
+        "value": "*,files.*,mindar_targets.*",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "fc4d6ec5-15a3-4f96-9346-98f080ebf9fa",
+    "colId": "history",
+    "containerId": "",
+    "name": "{{url}}/assets/aefae108-e063-47e6-82aa-24ff35b1c1c6",
+    "url": "{{url}}/assets/aefae108-e063-47e6-82aa-24ff35b1c1c6",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-02-23T06:39:13.074Z",
+    "modified": "2023-02-23T06:39:13.074Z",
     "headers": [],
     "params": [],
     "tests": []

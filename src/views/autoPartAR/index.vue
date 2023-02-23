@@ -3,7 +3,7 @@
     <v-btn @click="ar = true">啟動AR</v-btn>
     <div class="absolute inset-0 z-50" v-if="ar">
       <a-scene
-        mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.0/examples/image-tracking/assets/card-example/card.mind;"
+        mindar-image="imageTargetSrc:https://apdc.api.apdc.com.tw/assets/6c0a39d8-ffcf-4c2c-95ed-48d43c390e42;"
         color-space="sRGB"
         renderer="colorManagement: true, physicallyCorrectLights"
         vr-mode-ui="enabled: false"
@@ -13,12 +13,13 @@
         <a-assets>
           <img
             id="card"
-            src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.0/examples/image-tracking/assets/card-example/card.png"
+            src="https://apdc.api.apdc.com.tw/assets/aefae108-e063-47e6-82aa-24ff35b1c1c6"
             crossorigin
           />
           <a-asset-item
             id="avatarModel"
-            src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.0/examples/image-tracking/assets/card-example/softmind/scene.gltf"
+            src="https://apdc.api.apdc.com.tw/mindar_gltf_files/test/shiba/scene.gltf"
+            crossorigin
           ></a-asset-item>
         </a-assets>
 
@@ -34,7 +35,7 @@
           <a-gltf-model
             rotation="0 0 0 "
             position="0 0 0.1"
-            scale="0.005 0.005 0.005"
+            scale="1 1 1"
             src="#avatarModel"
             animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
           ></a-gltf-model>
@@ -45,6 +46,10 @@
 </template>
 
 <script>
+// 在目前的狀態下有一些問題
+// todo: a-scene要拆組件
+// todo: gltf檔是掛在mindar_gltf_files這個路徑下，此路徑由caddy控管
+// todo: directus後台在處理gltf檔的部份要重新調整
 export default {
   data() {
     return {
