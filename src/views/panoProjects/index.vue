@@ -65,10 +65,11 @@ export default {
     };
   },
   async created() {
-    this.panoProjects = await get({
-      url: "pano_projects",
+    const { data } = await get({
+      collection: "pano_projects",
       params: { fields: "id, name, description, image, files.*" },
     });
+    this.panoProjects = data;
   },
 };
 </script>

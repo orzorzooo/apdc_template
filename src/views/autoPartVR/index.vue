@@ -116,16 +116,7 @@ export default {
   components: { VuePannellum, NavBottom },
   methods: {
     assetURL,
-    onSceneSelect(index) {
-      // if (this.selected_scenes_index == index) {
-      //   return;
-      // }
-      // this.loaded = false;
-      // this.titleShow = false;
-      // console.log(this.titleShow);
-      // this.nav_bottom = false;
-      // this.selected_scenes_index = index;
-    },
+    onSceneSelect(index) {},
     onLoaded() {
       this.loaded = true;
       this.titleShow = true;
@@ -155,13 +146,13 @@ export default {
   },
   computed: {},
   async created() {
-    const project = await get({
-      url: `pano_projects/${this.id}`,
+    const { data } = await get({
+      collection: `pano_projects/${this.id}`,
       params: { fields: "*,scenes.*" },
     });
 
-    this.scenes = project.scenes;
-    console.log(this.scenes);
+    this.scenes = data.scenes;
+    console.log("panosscccc", this.scenes);
   },
 };
 // https://apdc.api.apdc.com.tw/assets/6dd619bb-d9a8-4fe1-b838-6ed7f2a449c2?quality=80&

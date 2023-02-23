@@ -75,10 +75,11 @@ export default {
     };
   },
   async created() {
-    this.projects = await get({
-      url: "projects",
+    const { data } = await get({
+      collection: "projects",
       params: { fields: "*,files.*" },
     });
+    this.projects = data;
   },
   computed: {
     featureImg() {

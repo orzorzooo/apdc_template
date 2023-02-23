@@ -4,26 +4,32 @@ export const BASEURL = `${process.env.VUE_APP_API_URL}`;
 // for directus封裝
 export const get = async ({
   type = "items",
-  url = "",
-  params = { fields: "*,files.*" },
+  collection = "",
+  params = { fields: "*,files.*", meta: "" },
 }) => {
+  const token = localStorage.getItem(`${process.env.VUE_APP_TOKEN_ID}`);
+  console.log("get token", token);
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  } else {
+    axios.defaults.headers.common["Authorization"] = ``;
+  }
   try {
-    const { data, status } = await axios.get(`${BASEURL}/${type}/${url}`, {
-      params,
-    });
-    console.log(
-      `%cGET ${status}`,
-      "font-weight:bold;border:1px solid white;padding:0.3rem 1rem;background-color:green;border-radius:1rem"
+    const { data, status } = await axios.get(
+      `${BASEURL}/${type}/${collection}`,
+      {
+        params,
+      }
     );
-    console.log(data);
-
-    return data.data;
+    onSuccess(data, status);
+    if (params.meta != "") {
+      return data;
+    }
+    return data;
   } catch (error) {
-    console.log(
-      `%cGET ${error.response.status}`,
-      "font-weight:bold;border:1px solid white;padding:0.3rem 1rem;background-color:red;border-radius:1rem"
-    );
-    console.log(error.message);
+    onError(error);
+    handleErrorMsg(error.response.status);
+    return false;
   }
 };
 
@@ -34,3 +40,29 @@ export const assetURL = (assetID, params = { quality: null, width: null }) => {
   const width = params.width ? `width=${params.width}` : "";
   return `${BASEURL}/assets/${assetID}?${quality}&${width}`;
 };
+
+function onSuccess(data, status) {
+  console.log(
+    `%cGET ${status}`,
+    "font-weight:bold;border:1px solid white;padding:0.3rem 1rem;background-color:green;border-radius:1rem"
+  );
+  console.log(data);
+}
+
+function onError(error) {
+  console.log(
+    `%cGET ${error.response.status}`,
+    "font-weight:bold;border:1px solid white;padding:0.3rem 1rem;background-color:red;border-radius:1rem"
+  );
+  console.log(error.response.data.errors[0].message);
+}
+
+function handleErrorMsg(status) {
+  // const global = globalStore();
+  // const map = {
+  //   401: "登入資料錯誤",
+  // };
+  // global.text = map[status];
+  // global.show = true;
+  // return map[status] ? map[status] : "系統錯誤";
+}

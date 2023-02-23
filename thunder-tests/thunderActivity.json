@@ -4,11 +4,11 @@
     "colId": "history",
     "containerId": "",
     "name": "{{url}}/items/pano_projects",
-    "url": "{{url}}/items/pano_projects",
+    "url": "{{url}}/items/mindar_projects",
     "method": "GET",
     "sortNum": 0,
     "created": "2022-11-21T06:50:32.447Z",
-    "modified": "2022-11-21T06:50:32.447Z",
+    "modified": "2023-02-23T06:06:22.570Z",
     "headers": [],
     "params": [],
     "tests": []

@@ -1,19 +1,10 @@
 <template>
   <v-app>
+    <div></div>
     <Navbar></Navbar>
     <v-main>
       <router-view />
-      <!-- <transition name="fade" @enter="enter">
-      
-      </transition> -->
-      <!-- <router-view v-slot="{ Component }">
-        <transition name="fade">
-          <component :is="Component"></component>
-        </transition>
-      </router-view> -->
-      <!-- <router-view class="view" /> -->
     </v-main>
-
     <Footer v-if="!$route.meta.hideFooter"></Footer>
   </v-app>
 </template>
@@ -57,5 +48,11 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.theme--light.v-application {
+  background: none;
+}
+.v-application--wrap {
+  height: 500px;
 }
 </style>

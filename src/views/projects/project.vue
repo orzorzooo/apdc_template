@@ -66,7 +66,9 @@ export default {
     };
   },
   async created() {
-    this.project = await get({ url: `projects/${this.id}` });
+    const { data } = await get({ collection: `projects/${this.id}` });
+    this.project = data;
+    console.log("prpppp", data);
   },
 };
 </script>

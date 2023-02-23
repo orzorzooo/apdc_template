@@ -43,14 +43,16 @@ export default {
   },
   async created() {
     if (!this.project.folder) return;
-    const files = await get({
+
+    const { data } = await get({
       type: "files",
       params: { filter: { folder: { _eq: this.project.folder } } },
     });
-    this.files = files.map((item) =>
+
+    this.files = data.map((item) =>
       assetURL(item.id, { quality: 50, width: 1024 })
     );
-    this.files_h_quality = files.map((item) =>
+    this.files_h_quality = data.map((item) =>
       assetURL(item.id, { quality: 85, width: 1920 })
     );
   },

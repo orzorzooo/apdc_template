@@ -9,6 +9,11 @@ import "aos/dist/aos.css";
 require("aframe");
 Vue.config.productionTip = false;
 
+import Aframe from "aframe";
+import "mind-ar/dist/mindar-image.prod.js";
+import "aframe";
+import "mind-ar/dist/mindar-image-aframe.prod.js";
+
 // Vue.config.ignoredElements = [
 //   "a-scene",
 //   "a-asset-item",

@@ -42,36 +42,15 @@ export default {
   },
   data() {
     return {
-      projects: [
-        {
-          id: 1,
-          name: "專案名稱01",
-          description: "lorem paragraph",
-          image:
-            "https://images.pexels.com/photos/2007647/pexels-photo-2007647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        },
-        {
-          id: 2,
-          name: "專案名稱02",
-          description: "lorem paragraph",
-          image:
-            "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        },
-        {
-          id: 3,
-          name: "專案名稱03",
-          description: "lorem paragraph",
-          image:
-            "https://images.pexels.com/photos/3183190/pexels-photo-3183190.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        },
-      ],
+      projects: null,
     };
   },
   async created() {
-    this.projects = await get({
-      url: "projects",
+    const { data } = await get({
+      collection: "projects",
       params: { fields: "*,files.*", limit: 3 },
     });
+    this.projects = data;
   },
 };
 </script>

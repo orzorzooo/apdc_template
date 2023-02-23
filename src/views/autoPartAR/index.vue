@@ -1,7 +1,7 @@
 <template>
   <div class="pt-15 bg-gray-800">
     <v-btn @click="ar = true">啟動AR</v-btn>
-    <div v-if="ar" class="h-96">
+    <div class="absolute inset-0 z-50" v-if="ar">
       <a-scene
         mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.0/examples/image-tracking/assets/card-example/card.mind;"
         color-space="sRGB"
@@ -45,8 +45,6 @@
 </template>
 
 <script>
-import "aframe";
-import "mind-ar/dist/mindar-image-aframe.prod.js";
 export default {
   data() {
     return {
@@ -55,5 +53,13 @@ export default {
     };
   },
   methods: {},
+  beforeRouteLeave(to, from, next) {
+    const mindarUIs = document.getElementsByClassName("mindar-ui-overlay");
+    for (let dom of mindarUIs) {
+      dom.remove();
+    }
+    this.ar = false;
+    next();
+  },
 };
 </script>
