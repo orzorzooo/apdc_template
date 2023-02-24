@@ -27,19 +27,23 @@
       >
         <a-assets>
           <a-asset-item
-            id="avatarModel"
-            src="https://apdc.api.apdc.com.tw/mindar_gltf_files/test/kala/kala.glb"
+            v-for="(item, index) in mindar_project.mindar_targets"
+            :id="asset_item_id(index)"
+            :src="gltf_file_url(item)"
             crossorigin
           ></a-asset-item>
         </a-assets>
 
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-        <a-entity mindar-image-target="targetIndex: 0">
+        <a-entity
+          v-for="(item, index) in mindar_project.mindar_targets"
+          :mindar-image-target="`targetIndex: ` + index"
+        >
           <a-gltf-model
             rotation="0 0 0 "
             position="0 0 0.1"
             scale="1 1 1"
-            src="#avatarModel"
+            :src="'#asset_item_id_' + index"
             animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
           ></a-gltf-model>
         </a-entity>
@@ -87,6 +91,12 @@ export default {
   },
   components: { Title },
   methods: {
+    gltf_file_url(item) {
+      return `${BASEURL}/mindar_gltf_files/${item.gltf_file_url}`;
+    },
+    asset_item_id(index) {
+      return `asset_item_id_${index}`;
+    },
     render() {
       this.$nextTick(() => {
         console.log("render start");
