@@ -26,11 +26,6 @@
         crossorigin
       >
         <a-assets>
-          <img
-            id="card"
-            src="https://apdc.api.apdc.com.tw/assets/aefae108-e063-47e6-82aa-24ff35b1c1c6"
-            crossorigin
-          />
           <a-asset-item
             id="avatarModel"
             src="https://apdc.api.apdc.com.tw/mindar_gltf_files/test/kala/kala.glb"
@@ -40,13 +35,6 @@
 
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
         <a-entity mindar-image-target="targetIndex: 0">
-          <!-- <a-plane
-            src="#card"
-            position="0 0 0"
-            height="2"
-            width="1"
-            rotation="0 0 0"
-          ></a-plane> -->
           <a-gltf-model
             rotation="0 0 0 "
             position="0 0 0.1"
