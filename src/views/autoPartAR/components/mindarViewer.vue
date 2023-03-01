@@ -16,7 +16,7 @@
         >啟動相機</v-btn
       >
     </div>
-    <div class="absolute inset-0 z-0" v-if="start">
+    <div class="absolute inset-0 z-0 w-full h-screen" v-if="start">
       <a-scene
         :mindar-image="mindar_mind_file"
         color-space="sRGB"
@@ -28,18 +28,44 @@
         <a-assets>
           <a-asset-item
             v-for="(item, index) in mindar_project.mindar_targets"
+            v-if="item.gltf_file_url"
             :id="asset_item_id(index)"
-            :src="gltf_file_url(item)"
+            :src="item.gltf_file_url"
             crossorigin
           ></a-asset-item>
+          <video
+            v-for="(item, index) in mindar_project.mindar_targets"
+            v-if="item.video_url"
+            :src="item.video_url"
+            :id="'video_' + index"
+          ></video>
         </a-assets>
 
-        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+        <a-camera
+          position="0 0 0"
+          look-controls="enabled: false"
+          cursor="fuse: false; rayOrigin: mouse;"
+          raycaster="far: ${customFields.libVersion}; objects: .clickable"
+        ></a-camera>
         <a-entity
           v-for="(item, index) in mindar_project.mindar_targets"
           :mindar-image-target="`targetIndex: ` + index"
+          @targetFound="onTargetFound(item, index)"
+          @targetLost="onTargetLost(item, index)"
         >
+          <a-video
+            v-if="item.video_url"
+            :src="'#video_' + index"
+            width="1.6"
+            height="0.9"
+            class="clickable"
+            @click="playVideo(index)"
+          ></a-video>
+
+          <a-text v-if="item.post" :value="item.post"></a-text>
+
           <a-gltf-model
+            v-if="item.gltf_file_url"
             rotation="0 0 0 "
             position="0 0 0.1"
             scale="1 1 1"
@@ -48,11 +74,7 @@
           ></a-gltf-model>
         </a-entity>
       </a-scene>
-      <v-btn></v-btn>
     </div>
-    <!-- <div class="absolute bottom-0 z-50 h-32">
-      <v-btn @click="stop">stop</v-btn>
-    </div> -->
   </div>
 </template>
 
@@ -75,27 +97,43 @@ export default {
     };
   },
   async created() {
-    const { data } = await get({
-      collection: `mindar_projects/${PROJECT_ID}`,
-      params: { fields: "*,files.*,mindar_targets.*" },
-    });
-    this.mindar_project = data;
-    console.log(data);
+    await this.init();
   },
   computed: {
     mindar_mind_file() {
       const setting_start = "imageTargetSrc:";
-      const setting = "uiScanning:no";
+      const setting = "uiScanning:no;filterMinCF:0.1; filterBeta: 10";
       return `${setting_start}${BASEURL}/assets/${this.mindar_project.mindar_mind_file};${setting}`;
     },
   },
   components: { Title },
   methods: {
-    gltf_file_url(item) {
-      return `${BASEURL}/mindar_gltf_files/${item.gltf_file_url}`;
+    async init() {
+      const { data } = await get({
+        collection: `mindar_projects/${PROJECT_ID}`,
+        params: { fields: "*,files.*,mindar_targets.*" },
+      });
+      this.mindar_project = data;
+      console.log(data);
     },
     asset_item_id(index) {
       return `asset_item_id_${index}`;
+    },
+    onTargetFound(item, index) {
+      console.log(item, index);
+    },
+    async onTargetLost(item, index) {
+      if (item.video_url) {
+        console.log(`#video_${index}`, "Lost");
+        document.querySelector(`#video_${index}`).pause();
+      }
+      await this.init();
+    },
+    test(index) {
+      console.log(index);
+    },
+    playVideo(index) {
+      document.querySelector(`#video_${index}`).play();
     },
     render() {
       this.$nextTick(() => {
@@ -111,13 +149,6 @@ export default {
       });
     },
     stop() {
-      // renderer.setAnimationLoop(null);
-      // entity.pause();
-      // arSystem.stop();
-      // const mindarUIs = document.getElementsByClassName("mindar-ui-overlay");
-      // for (let dom of mindarUIs) {
-      //   dom.remove();
-      // }
       window.location.reload();
     },
   },
