@@ -33,12 +33,7 @@
             :src="item.gltf_file_url"
             crossorigin
           ></a-asset-item>
-          <video
-            v-for="(item, index) in mindar_project.mindar_targets"
-            v-if="item.video_url"
-            :src="item.video_url"
-            :id="'video_' + index"
-          ></video>
+          <video id="ar_video" crossorigin></video>
         </a-assets>
 
         <a-camera
@@ -47,19 +42,19 @@
           cursor="fuse: false; rayOrigin: mouse;"
           raycaster="far: ${customFields.libVersion}; objects: .clickable"
         ></a-camera>
+
         <a-entity
           v-for="(item, index) in mindar_project.mindar_targets"
           :mindar-image-target="`targetIndex: ` + index"
           @targetFound="onTargetFound(item, index)"
           @targetLost="onTargetLost(item, index)"
         >
+          <!-- <a-plane class="clickable" @click="test(index)"></a-plane> -->
           <a-video
             v-if="item.video_url"
-            :src="'#video_' + index"
+            src="#ar_video"
             width="1.6"
             height="0.9"
-            class="clickable"
-            @click="playVideo(index)"
           ></a-video>
 
           <a-text v-if="item.post" :value="item.post"></a-text>
@@ -70,7 +65,6 @@
             position="0 0 0.1"
             scale="1 1 1"
             :src="'#asset_item_id_' + index"
-            animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"
           ></a-gltf-model>
         </a-entity>
       </a-scene>
@@ -94,6 +88,7 @@ export default {
       start: false,
       mindar_project: { name: "" },
       BASEURL,
+      ar_video: false,
     };
   },
   async created() {
@@ -121,19 +116,27 @@ export default {
     },
     onTargetFound(item, index) {
       console.log(item, index);
+      if (item.video_url) {
+        this.playVideo(item);
+      }
     },
     async onTargetLost(item, index) {
       if (item.video_url) {
-        console.log(`#video_${index}`, "Lost");
-        document.querySelector(`#video_${index}`).pause();
+        console.log(`video: ${item.video_url}`, "Lost");
+        document.querySelector(`#ar_video`).pause();
       }
       await this.init();
     },
     test(index) {
       console.log(index);
     },
-    playVideo(index) {
-      document.querySelector(`#video_${index}`).play();
+    playVideo(item) {
+      console.log("video", item);
+      const video = document.querySelector("#ar_video");
+      video.setAttribute("src", item.video_url);
+
+      console.log(video);
+      video.play();
     },
     render() {
       this.$nextTick(() => {
