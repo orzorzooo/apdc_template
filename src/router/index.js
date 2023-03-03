@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import landing from "@/views/landing/index.vue";
 import project from "@/views/projects/project.vue";
 import projects from "@/views/projects/index.vue";
+import autoPartAR from "@/views/autoPartAR/index.vue";
 
 Vue.use(VueRouter);
 
@@ -49,7 +50,7 @@ const routes = [
   {
     path: "/autoPartAR",
     name: "autoPartAR",
-    component: () => import("@/views/autoPartAR/index.vue"),
+    component: autoPartAR,
     meta: { hideFooter: true },
   },
   {
