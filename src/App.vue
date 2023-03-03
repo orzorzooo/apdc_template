@@ -16,11 +16,8 @@ import { mapGetters } from "vuex";
 export default {
   name: "App",
   components: { Navbar, Footer },
-  computed: {
-    ...mapGetters("layout", ["layout"]),
-  },
+
   data: () => ({
-    loaded: true,
     //
   }),
   methods: {
@@ -38,7 +35,7 @@ export default {
 };
 </script>
 <style>
-.fade-enter-active {
+/* .fade-enter-active {
   transition: opacity 0.2s ease;
 }
 .fade-leave-active {
@@ -53,5 +50,5 @@ export default {
 }
 .v-application--wrap {
   height: 500px;
-}
+} */
 </style>

@@ -16,7 +16,11 @@
         >啟動相機</v-btn
       >
     </div>
-    <div class="absolute inset-0 z-0 w-full h-screen" v-if="start">
+    <div
+      class="absolute inset-0 z-0 w-full h-screen flex justify-center items-center"
+      v-if="start"
+      id="ar-container"
+    >
       <a-scene
         :mindar-image="mindar_mind_file"
         color-space="sRGB"
@@ -97,7 +101,8 @@ export default {
   computed: {
     mindar_mind_file() {
       const setting_start = "imageTargetSrc:";
-      const setting = "uiScanning:no;filterMinCF:0.1; filterBeta: 10";
+      // const setting = "uiScanning:no;filterMinCF:0.1; filterBeta: 10";
+      const setting = "";
       return `${setting_start}${BASEURL}/assets/${this.mindar_project.mindar_mind_file};${setting}`;
     },
   },
@@ -138,12 +143,31 @@ export default {
       console.log(video);
       video.play();
     },
+
+    fixStraightScreen(arCameraPlane) {
+      arCameraPlane.style.left = `0`;
+      if (screen.height > screen.width) {
+        arCameraPlane.style.maxWidth = `999999px`;
+        arCameraPlane.style.left = `${-(
+          arCameraPlane.offsetWidth / 2 -
+          screen.width / 2
+        )}px`;
+      }
+    },
+
     render() {
       this.$nextTick(() => {
-        console.log("render start");
-        let sceneEl = document.querySelector("a-scene");
+        const sceneEl = document.querySelector("a-scene");
         sceneEl.addEventListener("arReady", (event) => {
           console.log("AR is ready");
+          const arContainer = document.getElementById("ar-container");
+          const [video, arCameraPlane] = arContainer.querySelectorAll("video");
+          this.fixStraightScreen(arCameraPlane);
+          window.onresize = () => {
+            this.fixStraightScreen(arCameraPlane);
+          };
+
+          console.log("ar camera plane ", arCameraPlane);
         });
         entity = document.querySelector("a-entity");
         renderer = sceneEl.renderer;

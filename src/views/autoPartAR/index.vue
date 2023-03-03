@@ -1,8 +1,6 @@
 <template>
-  <div class="pt-15 bg-gray-800">
-    <div>
-      <mindarViewer :start="ar"></mindarViewer>
-    </div>
+  <div>
+    <mindarViewer :start="ar"></mindarViewer>
   </div>
 </template>
 
