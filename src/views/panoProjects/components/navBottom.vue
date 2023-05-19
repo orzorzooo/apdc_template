@@ -1,7 +1,7 @@
 <template>
   <div class="w-full px-1 h-full">
     <vueper-slides
-      v-if="!$vuetify.breakpoint.lg"
+      v-if="$vuetify.breakpoint.mobile"
       :infinite="true"
       class="no-shadow h-full w-3/4 text-center text-white mx-auto"
       arrows-outside
@@ -26,7 +26,7 @@
             <v-img
               height="100%"
               @click="onClick(i)"
-              :src="assetURL(slide.feature_image, { width: 300, quality: 80 })"
+              :src="assetURL(slide.panorama, { width: 300, quality: 80 })"
               class="rounded-sm border-white"
               :class="{ 'border-1': selected_index == i }"
             >
@@ -45,9 +45,7 @@
                 width="100%"
                 height="150"
                 @click="onClick(i)"
-                :src="
-                  assetURL(slide.feature_image, { width: 300, quality: 80 })
-                "
+                :src="assetURL(slide.panorama, { width: 300, quality: 80 })"
                 class="rounded-sm border-white"
                 :class="{ 'border-1': selected_index == i }"
               >
